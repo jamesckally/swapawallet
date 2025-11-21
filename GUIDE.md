@@ -76,3 +76,26 @@ This guide explains how to run the swapWallet landing page locally, deploy it to
         5.  Click "Confirm".
         6.  Wait 1-2 minutes for changes to propagate.
     -   **Check Credentials**: Ensure your username and password in `.env.local` are correct. The password should not contain special characters like `@` or `:` unless encoded.
+
+## Custom Domain Setup (Namecheap Subdomain)
+
+If you want to use a subdomain like `app.yourdomain.com`:
+
+1.  **Vercel Setup**:
+    -   Go to your project on Vercel.
+    -   Click **Settings** -> **Domains**.
+    -   Enter your full subdomain (e.g., `app.yourdomain.com`) and click **Add**.
+    -   Vercel will show you a **CNAME** record value (usually `cname.vercel-dns.com`).
+
+2.  **Namecheap Setup**:
+    -   Log in to Namecheap and go to **Domain List**.
+    -   Click **Manage** next to your domain.
+    -   Go to the **Advanced DNS** tab.
+    -   Click **Add New Record**.
+    -   **Type**: `CNAME Record`
+    -   **Host**: The subdomain part (e.g., `app` if your full domain is `app.yourdomain.com`).
+    -   **Value**: `cname.vercel-dns.com` (or whatever Vercel told you).
+    -   **TTL**: Automatic.
+    -   Click the green checkmark to save.
+
+3.  **Wait**: It can take 5-30 minutes for the domain to work.
