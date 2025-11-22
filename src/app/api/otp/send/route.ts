@@ -47,6 +47,7 @@ export async function POST(req: Request) {
         return NextResponse.json({ message: 'OTP sent successfully' });
     } catch (error) {
         console.error('Send OTP error:', error);
-        return NextResponse.json({ error: 'Failed to send OTP' }, { status: 500 });
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+        return NextResponse.json({ error: 'Failed to send OTP', details: errorMessage }, { status: 500 });
     }
 }
