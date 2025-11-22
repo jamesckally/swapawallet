@@ -14,6 +14,7 @@ export async function GET() {
         return NextResponse.json({ count, slotsLeft });
     } catch (error) {
         console.error('Stats error:', error);
-        return NextResponse.json({ error: 'Failed to fetch stats' }, { status: 500 });
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+        return NextResponse.json({ error: 'Failed to fetch stats', details: errorMessage }, { status: 500 });
     }
 }
