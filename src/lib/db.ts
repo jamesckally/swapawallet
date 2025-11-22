@@ -34,7 +34,7 @@ async function dbConnect() {
   if (!cached.promise) {
     const opts = {
       bufferCommands: false,
-      maxPoolSize: 10,
+      maxPoolSize: 20,
       serverSelectionTimeoutMS: 5000, // Fail fast if DB is unreachable
       socketTimeoutMS: 45000, // Close sockets after 45s of inactivity
     };

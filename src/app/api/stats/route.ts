@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import User from '@/models/User';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 30; // Cache for 30 seconds
 
 export async function GET() {
     try {
