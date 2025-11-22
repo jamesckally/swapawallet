@@ -21,7 +21,7 @@ export default function StatsCounter() {
         };
 
         fetchStats();
-        const interval = setInterval(fetchStats, 10000); // Refresh every 10s
+        const interval = setInterval(fetchStats, 30000); // Refresh every 30s
         return () => clearInterval(interval);
     }, []);
 

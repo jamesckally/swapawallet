@@ -21,7 +21,7 @@ if (!cached) {
 }
 
 async function dbConnect() {
-  if (cached.conn) {
+  if (cached.conn && cached.conn.connection.readyState === 1) {
     return cached.conn;
   }
 
@@ -35,8 +35,9 @@ async function dbConnect() {
     const opts = {
       bufferCommands: false,
       maxPoolSize: 20,
-      serverSelectionTimeoutMS: 5000, // Fail fast if DB is unreachable
-      socketTimeoutMS: 45000, // Close sockets after 45s of inactivity
+      serverSelectionTimeoutMS: 5000,
+      socketTimeoutMS: 45000,
+      family: 4, // Force IPv4 to avoid connectivity issues
     };
 
     cached.promise = mongoose.connect(MONGODB_URI!, opts).then((mongoose) => {
