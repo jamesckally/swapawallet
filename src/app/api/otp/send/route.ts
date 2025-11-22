@@ -42,16 +42,11 @@ export async function POST(req: Request) {
             text: `Your verification code is: ${otp}. It expires in 5 minutes.`,
         };
 
-        console.log('Mail Options:', JSON.stringify(mailOptions, null, 2));
-
         await transporter.sendMail(mailOptions);
 
         return NextResponse.json({ message: 'OTP sent successfully' });
-    } catch (error: any) {
-        console.error('Send OTP error detailed:', error);
-        if (error.response) {
-            console.error('SMTP Response:', error.response);
-        }
-        return NextResponse.json({ error: 'Failed to send OTP', details: error.message }, { status: 500 });
+    } catch (error) {
+        console.error('Send OTP error:', error);
+        return NextResponse.json({ error: 'Failed to send OTP' }, { status: 500 });
     }
 }
