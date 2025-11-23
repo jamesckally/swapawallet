@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { Users, Disc } from 'lucide-react';
 
 export default function StatsCounter() {
-    const [stats, setStats] = useState({ count: 0, slotsLeft: 5000 });
+    const [stats, setStats] = useState({ count: 0, slotsLeft: 6000 });
 
     useEffect(() => {
         const fetchStats = async () => {

@@ -4,6 +4,7 @@ export interface IUser extends Document {
     email: string;
     twitterHandle: string;
     cantonId: string;
+    partyIdMemo?: string;
     ipAddress: string;
     createdAt: Date;
 }
@@ -12,6 +13,7 @@ const UserSchema: Schema = new Schema({
     email: { type: String, required: true, unique: true },
     twitterHandle: { type: String, required: true },
     cantonId: { type: String, required: true },
+    partyIdMemo: { type: String, required: false },
     ipAddress: { type: String, required: true },
     createdAt: { type: Date, default: Date.now },
 });

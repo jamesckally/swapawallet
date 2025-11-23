@@ -5,7 +5,7 @@ import { headers } from 'next/headers';
 
 export async function POST(req: Request) {
     try {
-        const { email, twitterHandle, cantonId } = await req.json();
+        const { email, twitterHandle, cantonId, partyIdMemo } = await req.json();
 
         if (!email || !twitterHandle || !cantonId) {
             return NextResponse.json({ error: 'All fields are required' }, { status: 400 });
@@ -15,7 +15,7 @@ export async function POST(req: Request) {
 
         // Check global limit
         const count = await User.countDocuments();
-        if (count >= 5000) {
+        if (count >= 6000) {
             return NextResponse.json({ error: 'Registration closed. Limit reached.' }, { status: 400 });
         }
 
@@ -45,6 +45,7 @@ export async function POST(req: Request) {
             email,
             twitterHandle,
             cantonId,
+            partyIdMemo,
             ipAddress: ip,
         });
 

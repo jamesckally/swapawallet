@@ -12,7 +12,8 @@ export default function RegistrationForm() {
     const [formData, setFormData] = useState({
         email: '',
         twitterHandle: '',
-        cantonId: ''
+        cantonId: '',
+        partyIdMemo: ''
     });
 
     const handleRegister = async (e: React.FormEvent) => {
@@ -26,7 +27,8 @@ export default function RegistrationForm() {
                 body: JSON.stringify({
                     email: formData.email,
                     twitterHandle: formData.twitterHandle,
-                    cantonId: formData.cantonId
+                    cantonId: formData.cantonId,
+                    partyIdMemo: formData.partyIdMemo
                 }),
             });
             const data = await res.json();
@@ -103,6 +105,20 @@ export default function RegistrationForm() {
                                     />
                                 </div>
                             </div>
+
+                            <div className="space-y-2">
+                                <label className="text-sm font-medium text-textSecondary">Party ID Memo <span className="text-xs text-textSecondary/70">(Optional)</span></label>
+                                <div className="relative">
+                                    <Hash className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-textSecondary" />
+                                    <input
+                                        type="text"
+                                        placeholder="Memo..."
+                                        className="w-full bg-background border border-border rounded-lg py-3 pl-10 pr-4 text-textPrimary focus:outline-none focus:border-primary transition-colors"
+                                        value={formData.partyIdMemo}
+                                        onChange={(e) => setFormData({ ...formData, partyIdMemo: e.target.value })}
+                                    />
+                                </div>
+                            </div>
                         </div>
 
                         {error && (
@@ -140,6 +156,9 @@ export default function RegistrationForm() {
                             <p className="text-sm text-textSecondary">Email: <span className="text-textPrimary">{formData.email}</span></p>
                             <p className="text-sm text-textSecondary">Twitter: <span className="text-textPrimary">{formData.twitterHandle}</span></p>
                             <p className="text-sm text-textSecondary">Party ID: <span className="text-textPrimary">{formData.cantonId}</span></p>
+                            {formData.partyIdMemo && (
+                                <p className="text-sm text-textSecondary">Memo: <span className="text-textPrimary">{formData.partyIdMemo}</span></p>
+                            )}
                         </div>
                     </motion.div>
                 )}

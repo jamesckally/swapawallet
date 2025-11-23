@@ -8,7 +8,7 @@ export async function GET() {
     try {
         await dbConnect();
         const count = await User.countDocuments();
-        const totalSlots = 5000;
+        const totalSlots = 6000;
         const slotsLeft = Math.max(0, totalSlots - count);
 
         return NextResponse.json({ count, slotsLeft });
